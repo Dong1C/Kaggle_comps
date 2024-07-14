@@ -396,3 +396,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+
+# the datafile
+*/dataset/*
+.dataset/*
+.dataset
