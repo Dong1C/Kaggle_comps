@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>React Example</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+        .yellow {
+            color: blue;
+        }
+
+        .passage {
+            font-size: large;
+            font-style: italic;
+            text-align: center;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // 创建一个简单的 React 组件
+        const HelloWorld = () => {
+            let num = 10
+            return <h1>get the num: {num}</h1>;
+        };
+
+        // 将组件渲染到页面上的 id 为 "root" 的元素中
+        ReactDOM.render(
+            <HelloWorld />,
+            document.getElementById('root'));
+
+
+        ReactDOM.render(
+            <HelloWorld />,
+            document.getElementById('root'));
+    </script>
+
+    <div id="test2"></div>
+    <script type="text/babel">
+        // 创建一个简单的 React 组件
+        let customized_ele = React.createElement(
+            'h1',
+            {
+                className: "yellow",
+            },
+            "Bye world!"
+        )
+        // 将组件渲染到页面上的 id 为 "root" 的元素中
+        ReactDOM.render(
+            customized_ele,
+            document.getElementById('test2'));
+    </script>
+
+    <div id="test3"></div>
+    <script type="text/babel">
+        let passage = React.createElement(
+            "span",
+            {
+                className: "passage"
+            },
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi excepturi accusantium a iure cupiditate sed pariatur necessitatibus. Ducimus exercitationem dolores dolore recusandae quibusdam. Ipsa fugit enim quia quisquam ad suscipit."
+        )
+        ReactDOM.render(passage, document.getElementById("test3"))
+    </script>
+
+    <hr>
+
+    <div id="nowtime"></div>
+    <script type="text/babel">
+        let tick = () => {
+            return <div>
+                <h1>Now time is:</h1>
+                <h2>{new Date().toLocaleTimeString()}</h2>
+            </div>
+        }
+        document.getElementById("nowtime").innerHTML += ""
+        window.setInterval(() => {
+            ReactDOM.render(tick(), document.getElementById("nowtime"))
+        })
+    </script>
+
+    <hr>
+
+    <!-- 定义一个待渲染块 -->
+    <div id="funcComp"></div>
+    <script type="text/babel">
+        // 定义一个函数式组件
+        function Hello() {
+            return <h1> Hello, world!</h1>
+        }
+
+        // 使用ReactDOM进行render
+        ReactDOM.render(
+            <Hello />,
+            document.getElementById("funcComp")
+        )
+    </script>
+    <hr>
+
+    <!-- 定义一个待渲染块 -->
+    <div id="funcWithProps"></div>
+    <script type="text/babel">
+        // 定义一个函数式组件
+        function Blyat(user) {
+            return <div>
+                <li> name : {user.name} </li>
+                <li> age : {user.age} </li>
+            </div>
+        }
+
+        // 使用ReactDOM进行render
+        ReactDOM.render(
+            <Blyat name="docg" age="10" />,
+            document.getElementById("funcWithProps")
+        )
+    </script>
+    <hr>
+
+
+    <!-- 有状态组件使用方法 -->
+    <div id="stateComp"></div>
+    <script type="text/babel">
+        class Hellofn extends React.Component {
+
+            render() {
+                return <div>
+                    <h1>hello, man!</h1>
+                    <h2>This is {this.props.name}: {this.props.age} years old programmer...</h2>
+                </div>
+            }
+        }
+        ReactDOM.render(
+            <Hellofn name="docg" age="18" />,
+            document.getElementById("stateComp")
+        )
+
+    </script>
+
+    <hr>
+
+    <!-- 有状态组件使用方法2 -->
+    <div id="stateUpdate"></div>
+    <script type="text/babel">
+        class Updater extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    name: "hello",
+                    age: 18
+                }
+            }
+
+            updateInfos = () => {
+                this.setState({
+                    name: "docg",
+                    age: 100
+                })
+            }
+
+            render() {
+                return <div>
+                    <h1>hello, man!</h1>
+                    <h2>This is {this.state.name}: {this.state.age} years old programmer...</h2>
+                    <button onClick={this.updateInfos}>update Info</button>
+                </div>
+            }
+        }
+        ReactDOM.render(
+            <Updater />,
+            document.getElementById("stateUpdate")
+        )
+
+    </script>
+
+    <hr>
+
+    <!-- 有状态组件绑定方法 -->
+    <div id="stateBind"></div>
+    <script type="text/babel">
+        class UpdateBinder extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    name: "hello",
+                    age: 18
+                }
+                this.updateInfos = () => {
+                    this.setState({
+                        name: "dockerg",
+                        age: 10000
+                    })
+                }
+            }
+
+            render() {
+                return <div>
+                    <h1>hello, man!</h1>
+                    <h2>This is {this.state.name}: {this.state.age} years old programmer...</h2>
+                    <button onClick={this.updateInfos}>update Info</button>
+                </div>
+            }
+        }
+        ReactDOM.render(
+            <UpdateBinder />,
+            document.getElementById("stateBind")
+        )
+
+    </script>
+
+    <!-- 有状态组件绑定方法 -->
+    <div id="stateBind"></div>
+    <script type="text/babel">
+        class UpdateBinder extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    name: "hello",
+                    age: 18
+                }
+                this.updateInfos = () => {
+                    this.setState({
+                        name: "dockerg",
+                        age: 10000
+                    })
+                }
+            }
+
+            render() {
+                return <div>
+                    <h1>hello, man!</h1>
+                    <h2>This is {this.state.name}: {this.state.age} years old programmer...</h2>
+                    <button onClick={this.updateInfos}>update Info</button>
+                </div>
+            }
+        }
+        ReactDOM.render(
+            <UpdateBinder />,
+            document.getElementById("stateBind")
+        )
+
+    </script>
+
+    <hr>
+
+    <div id="lists"></div>
+    <script type="text/babel">
+        class List extends React.Component {
+            state = {
+                eles: [1, 2, 3, 4, 5]
+            }
+
+            render() {
+                const arr = this.state.eles
+                const list_eles = []
+
+                for (let x of arr) {
+                    let tmp = <li>this is number: {x}</li>
+                    list_eles.push(tmp)
+                }
+
+                return <div>
+                    <ul>
+                        {list_eles}
+                    </ul>
+                </div>
+            }
+        }
+        ReactDOM.render(
+            <List />,
+            document.getElementById("lists")
+        )
+    </script>
+
+    <hr>
+
+    <div id="glists"></div>
+    <script type="text/babel">
+        class List2 extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    eles: []
+                };
+            }
+
+            gen_elements = () => {
+                let newEles = [];
+                for (let i = 0; i < 10; i++) {
+                    newEles.push({ id: i, name: "gdc" });
+                }
+                this.setState({ eles: newEles });
+            }
+
+            render() {
+                const arr = this.state.eles;
+
+                return (
+                    <div>
+                        <ul>
+                            {arr.map(item => <li key={item.id}>{item.id}: {item.name}</li>)}
+                        </ul>
+                        <button onClick={this.gen_elements}>update elements</button>
+                    </div>
+                );
+            }
+        }
+        ReactDOM.render(
+            <List2 />,
+            document.getElementById("glists")
+        )
+    </script>
+
+    <hr>
+
+    <div id="condition_buttons"></div>
+    <script type="text/babel">
+        const Login = ({ comp }) => {
+            return <button onClick={comp.togglelogin}> Login </button>;
+        }
+
+        const Logout = ({ comp }) => {
+            return <button onClick={comp.togglelogout}> Logout </button>;
+        }
+
+        class App extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    isLogin: false
+                };
+            }
+
+            togglelogin = () => {
+                this.setState({
+                    isLogin: true
+                })
+            }
+
+            togglelogout = () => {
+                this.setState({
+                    isLogin: false
+                })
+            }
+
+            render() {
+                const islogin = this.state.isLogin;
+                let button = !islogin ? <Login comp={this} /> : <Logout comp={this} />
+                return <div>
+                    {button}
+                </div>;
+            }
+        }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById("condition_buttons")
+        )
+    </script>
+
+
+
+</body>
+
+</html>
